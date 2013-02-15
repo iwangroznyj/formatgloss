@@ -12,21 +12,14 @@ import sys
 import formatglosslib.tbgloss as tbgloss
 
 
-def format_faulty_gloss(gloss):
-    '''Format a faulty gloss for printing.
-
-    :param gloss: gloss to be formatted
-    :type  gloss: tbgloss.ToolboxGloss
-    :return:      formatted gloss
-    :rtype:        str
-
-    '''
-    head = '\n{0:=^60}'.format(' WARNING ')
-    error = '({0})'.format(gloss.error)
-    msg = 'Could not parse following gloss:'
-    line = 60 * '-'
-    foot = 60 * '='
-    return '\n'.join([head, msg, error, line, str(gloss), foot])
+WARN_GLOSS = '''
+========================= WARNING ==========================
+Could not parse following gloss:
+({error})
+------------------------------------------------------------
+{gloss}
+============================================================
+'''
 
 
 def main(args):
@@ -46,7 +39,7 @@ def main(args):
     print str(toolbox_file)
     for gloss in toolbox_file.get_glosses():
         if gloss.is_faulty:
-            sys.stderr.write(format_faulty_gloss(gloss) + '\n')
+            sys.stderr.write(WARN_GLOSS.format(gloss=gloss, error=gloss.error))
 
 
 if __name__ == '__main__':
