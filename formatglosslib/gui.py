@@ -300,7 +300,7 @@ class ResultsWindow(wx.Frame):
         filename = dlg.GetPath()
         dlg.Destroy()
         if not answer == wx.ID_OK:
-            returnn
+            return
         try:
             with open(filename, 'w') as outputfile:
                 outputfile.write(str(self.toolbox_file))
