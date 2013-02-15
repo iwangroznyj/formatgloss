@@ -10,24 +10,28 @@ often misaligned.
 
 The present script scans text files for Toolbox glosses and realigns them
 taking diacritics into consideration.  It comes with a command-line interface
-as well as a graphical user interface written in wxPython.
+as well as a graphical user interface.
 
 
 ## Requirements ##
 
- * This script requires at least Python 2.6
+ * This script requires at least Python 2.6 (but not Python 3!)
  * The graphical user interface requires wxPython
 
 
 ## Usage ##
 
-Command-line interface:
-
-    formatgloss_cli.py file
-
-Graphical user interface:
+The graphical user interface is started by running following script:
 
     formatgloss.pyw
+
+The command-line interface is run with the `formatgloss_cli.py` script.  This
+script takes two arguments:  The first determines the input file containing the
+Toolbox glosses to be reformatted.  The second argument names the file to which
+the reformatted glosses are to be saved.  This second argument is optional.  If
+it is omitted, the reformatted text is printed out on standard output.
+
+    formatgloss_cli.py input_file [output_file]
 
 
 ## License ##
