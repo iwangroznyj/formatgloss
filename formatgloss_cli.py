@@ -3,7 +3,8 @@
 '''Command-line interface to Formatgloss.
 
 This script reads a Toolbox file and reformats glosses in it.  The
-reformatted glosses are then printed out to standard output.
+reformatted glosses are then printed out to standard output or written
+into a text file.
 
 '''
 
@@ -29,14 +30,21 @@ def main(args):
     :type  args: list of str
 
     '''
-    if len(args) != 2:
-        sys.stderr.write('Error: needs exactly one text file.\n')
+    if len(args) < 2:
+        sys.stderr.write('Error: missing input file.\n')
+        return
+    if len(args) > 3:
+        sys.stderr.write('Error: too much arguments.\n')
         return
     with open(args[1]) as input_file:
         lines = input_file.readlines()
     lines = [line.decode(tbgloss.INPUT_ENC).rstrip() for line in lines]
     toolbox_file = tbgloss.ToolboxFile(lines)
-    print str(toolbox_file)
+    if len(args) == 3:
+        with open(args[2], 'w') as output_file:
+            output_file.write(str(toolbox_file))
+    else:
+        print str(toolbox_file)
     for gloss in toolbox_file.get_glosses():
         if gloss.is_faulty:
             sys.stderr.write(WARN_GLOSS.format(gloss=gloss, error=gloss.error))
