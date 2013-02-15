@@ -296,11 +296,11 @@ class ResultsWindow(wx.Frame):
     def on_save(self, event):
         '''Handle 'save' event'''
         dlg = SaveDialog(parent=self)
-        dlg.ShowModal()
+        answer = dlg.ShowModal()
         filename = dlg.GetPath()
         dlg.Destroy()
-        if not filename:
-            return
+        if not answer == wx.ID_OK:
+            returnn
         try:
             with open(filename, 'w') as outputfile:
                 outputfile.write(str(self.toolbox_file))
@@ -312,10 +312,10 @@ class ResultsWindow(wx.Frame):
     def read_toolbox_file(self):
         '''Read Toolbox glosses from file'''
         dlg = OpenDialog(parent=self)
-        dlg.ShowModal()
+        answer = dlg.ShowModal()
         filename = dlg.GetPath()
         dlg.Destroy()
-        if not filename:
+        if not answer == wx.ID_OK:
             return
         try:
             with open(filename, 'r') as inputfile:
