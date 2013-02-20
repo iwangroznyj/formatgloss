@@ -36,9 +36,11 @@ config = {'name': 'Formatgloss',
           'author_email': 'cyberjoe0815@hotmail.com',
           'description': 'Reformats glosses in Toolbox files',
           'long_description': description,
+          'platform': 'any',
+          'license': 'MIT License',
           'classifiers': ['Development Status :: 4 - Beta',
                           'Environment :: Console',
-                          'Environment :: MacOS X',
+                          'Environment :: MacOS X :: Carbon',
                           'Environment :: Win32 (MS Windows)',
                           'Environment :: X11 Applications :: GTK',
                           'Intended Audience :: Science/Research',
@@ -48,7 +50,7 @@ config = {'name': 'Formatgloss',
                           'Topic :: Text Processing :: Linguistic'],
           'packages': ['formatglosslib'],
           'scripts': ['formatgloss_cli.py', 'formatgloss.pyw'],
-          'requires': ['wx']}
+          'requires': ['wxPython']}
 
 config_py2exe = {'console': ['formatgloss_cli.py'],
                  'windows': ['formatgloss.pyw']}
